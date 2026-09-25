@@ -147,13 +147,20 @@ document.querySelectorAll('[data-animated-heading]').forEach(heading => {
     const line = document.createElement('span');
     line.className = 'animated-line';
     line.setAttribute('aria-hidden', 'true');
-    [...lineText].forEach(character => {
-      const span = document.createElement('span');
-      span.className = 'animated-char';
-      span.textContent = character === ' ' ? ' ' : character;
-      span.style.setProperty('--char-delay', `${200 + characterIndex * 18}ms`);
+    lineText.trim().split(' ').forEach((wordText, wordIndex, words) => {
+      const word = document.createElement('span');
+      word.className = 'animated-word';
+      [...wordText].forEach(character => {
+        const span = document.createElement('span');
+        span.className = 'animated-char';
+        span.textContent = character;
+        span.style.setProperty('--char-delay', `${200 + characterIndex * 18}ms`);
+        characterIndex += 1;
+        word.appendChild(span);
+      });
       characterIndex += 1;
-      line.appendChild(span);
+      line.appendChild(word);
+      if (wordIndex < words.length - 1) line.appendChild(document.createTextNode(' '));
     });
     heading.appendChild(line);
     if (lineIndex < lines.length - 1) heading.appendChild(document.createElement('br'));
