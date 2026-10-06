@@ -3,5 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/hg3ads37/produto.huntersmotos.com.br/
     - /bin/mkdir -p "$DEPLOYPATH"
-    - /bin/cp -f index.html robots.txt "$DEPLOYPATH"
+    - /bin/cp -f index.html robots.txt sitemap.xml llm.txt llms.txt .htaccess "$DEPLOYPATH"
     - /bin/cp -R assets "$DEPLOYPATH"

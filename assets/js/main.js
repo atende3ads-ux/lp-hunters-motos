@@ -3,6 +3,8 @@ const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}`;
 const DEFAULT_MESSAGE = "Oi, Hunters! Estou procurando uma elétrica para a minha rotina e ainda não sei qual modelo escolher. Pode me ajudar?";
 const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Hunters+Motos+%7C+Scooters+El%C3%A9tricas/@-23.0007255,-43.352311,17z/data=!4m8!3m7!1s0x9bdb300a2e25f7:0x329c6f6d2099edd9!8m2!3d-23.0007255!4d-43.352311!9m1!1b1!16s%2Fg%2F11p9ycds_r?hl=pt-BR";
 
+document.documentElement.classList.add('has-js');
+
 const iconWhats = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L.2 24l6.3-1.6a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5ZM12.2 21.8h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.2-.7.2l-.9 1.1c-.2.3-.4.3-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.7.1-.2.1-.4 0-.6L8.1 4.8c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 3s1.3 3.5 1.5 3.7c.2.3 2.6 4 6.3 5.6 2.3 1 3.2 1.1 4.4.9.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/></svg>`;
 
 /* Ícones em linha (traço), no mesmo padrão das LPs de referência */
@@ -91,7 +93,13 @@ const floating = document.querySelector('.floating-whatsapp');
 if (floating) floating.innerHTML = iconWhats;
 
 const header = document.querySelector('.site-header');
-if (header) window.addEventListener('scroll', () => header.classList.toggle('is-scrolled', window.scrollY > 140), {passive: true});
+const hero = document.querySelector('.hero');
+if (header && hero && 'IntersectionObserver' in window) {
+  const headerObserver = new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-scrolled', !entry.isIntersecting);
+  }, {rootMargin: '-140px 0px 0px'});
+  headerObserver.observe(hero);
+}
 
 /* Calculadora: Faça sua conta */
 const brl = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
@@ -109,6 +117,8 @@ document.querySelectorAll('[data-calc]').forEach(form => {
   const cta = form.querySelector('[data-calc-cta]');
   const baseMessage = cta?.dataset.message || '';
   const empty = result.textContent;
+
+  form.addEventListener('submit', event => event.preventDefault());
 
   const update = () => {
     const d = parseMoney(daily.value);
@@ -137,32 +147,48 @@ document.querySelectorAll('[data-lead-form]').forEach(form => {
   });
 });
 
-/* Título do hero com revelação por caractere (mesmo padrão das LPs de referência) */
-document.querySelectorAll('[data-animated-heading]').forEach(heading => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 620px)').matches) return;
-  const lines = heading.innerText.split('\n');
-  let characterIndex = 0;
-  heading.textContent = '';
-  lines.forEach((lineText, lineIndex) => {
-    const line = document.createElement('span');
-    line.className = 'animated-line';
-    line.setAttribute('aria-hidden', 'true');
-    lineText.trim().split(' ').forEach((wordText, wordIndex, words) => {
-      const word = document.createElement('span');
-      word.className = 'animated-word';
-      [...wordText].forEach(character => {
-        const span = document.createElement('span');
-        span.className = 'animated-char';
-        span.textContent = character;
-        span.style.setProperty('--char-delay', `${200 + characterIndex * 18}ms`);
-        characterIndex += 1;
-        word.appendChild(span);
-      });
-      characterIndex += 1;
-      line.appendChild(word);
-      if (wordIndex < words.length - 1) line.appendChild(document.createTextNode(' '));
+/* FAQ exclusiva: abrir uma resposta fecha as demais. */
+const faqItems = [...document.querySelectorAll('.faq-item')];
+faqItems.forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (!item.open) return;
+    faqItems.forEach(other => {
+      if (other !== item) other.open = false;
     });
-    heading.appendChild(line);
-    if (lineIndex < lines.length - 1) heading.appendChild(document.createElement('br'));
   });
 });
+
+/* Fade-in progressivo durante a rolagem, sem esconder conteúdo sem JavaScript. */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealTargets = document.querySelectorAll([
+  '.turn > *',
+  '.section-intro',
+  '.product-card',
+  '.compare-banner',
+  '.service-card',
+  '.split > *',
+  '.rating-card',
+  '.review-card',
+  '.map-card',
+  '.faq-item',
+  '.support-banner',
+  '.final > *',
+  '.contact-top',
+  '.store'
+].join(','));
+
+if (!reduceMotion && 'IntersectionObserver' in window) {
+  revealTargets.forEach((element, index) => {
+    element.classList.add('reveal-ready', `reveal-delay-${index % 4}`);
+  });
+
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
+
+  revealTargets.forEach(element => revealObserver.observe(element));
+}
