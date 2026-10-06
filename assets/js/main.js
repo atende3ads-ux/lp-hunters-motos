@@ -173,13 +173,44 @@ document.querySelectorAll('[data-calc]').forEach(form => {
   days.addEventListener('input', update);
 });
 
-/* Formulário: Prefere que a Hunters fale com você? (protótipo: envia os dados via WhatsApp) */
+/* Formulário: abre uma conversa personalizada e registra a intenção sem enviar PII ao tracking. */
 document.querySelectorAll('[data-lead-form]').forEach(form => {
+  const formId = 'lead_whatsapp';
+  const sendGoogleEvent = (eventName, eventData) => {
+    window.dataLayer = window.dataLayer || [];
+    const googleTag = window.gtag || function () { window.dataLayer.push(arguments); };
+    googleTag('event', eventName, eventData);
+  };
+
+  form.querySelectorAll('[name]').forEach(field => {
+    field.addEventListener('change', () => {
+      if (!String(field.value).trim()) return;
+      const eventData = {
+        form_id: formId,
+        field_name: field.name,
+        field_type: field.tagName.toLowerCase()
+      };
+      if (field.name === 'modelo') eventData.model_interest = field.value;
+      sendGoogleEvent('lead_form_field_completed', eventData);
+    });
+  });
+
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
-    const message = `Oi, Hunters! Quero receber as informações.\nNome: ${data.get('nome')}\nWhatsApp: ${data.get('whatsapp')}\nModelo de interesse: ${data.get('modelo')}`;
+    const name = String(data.get('nome')).trim();
+    const model = String(data.get('modelo')).trim();
+    const trackingData = {
+      form_id: formId,
+      contact_method: 'whatsapp',
+      model_interest: model
+    };
+
+    sendGoogleEvent('lead_whatsapp_click', trackingData);
+    sendGoogleEvent('generate_lead', trackingData);
+
+    const message = `Oi, Hunters! Meu nome é ${name} e tenho interesse no modelo ${model}. Quero receber mais informações.`;
     window.open(whatsUrl(message), '_blank', 'noopener');
   });
 });

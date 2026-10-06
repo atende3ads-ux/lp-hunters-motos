@@ -33,6 +33,11 @@ Rastreamento ativo: GTM `GTM-PKMM67CF`, GA4 `G-K88YCW36CL`, Google Ads
 `AW-16513189480` e Microsoft Clarity `ytlwefl3i7`. O webhook só deve ser ativado
 depois de confirmar a origem HTTPS exata e o contrato CORS.
 
+O formulário registra `lead_form_field_completed` para cada campo preenchido e,
+ao abrir o WhatsApp, dispara `lead_whatsapp_click` e `generate_lead`. Os eventos
+incluem somente o identificador do formulário, o campo, o canal e, quando
+aplicável, o modelo de interesse; nome e telefone não são enviados ao tracking.
+
 O script de CSP também preserva os hashes dos scripts inline emitidos pela versão
 publicada do GTM. Ao publicar uma nova versão do container, valide novamente no
 Tag Assistant e atualize os hashes listados em `scripts/update-csp-hash.sh` se
