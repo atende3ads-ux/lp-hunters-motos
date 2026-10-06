@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    # The repository is checked out directly in the domain's document root.
-    # Updating from the remote already publishes the tracked files, so the
-    # deployment step only needs a successful, side-effect-free task.
-    - /bin/true
+    - export DEPLOYPATH=/home2/hg3ads37/produto.huntersmotos.com.br/
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp -f index.html robots.txt "$DEPLOYPATH"
+    - /bin/cp -R assets "$DEPLOYPATH"
