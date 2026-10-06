@@ -63,8 +63,8 @@ section[id], .group-head[id] { scroll-margin-top: 90px; }
 .section-intro.center .eyebrow { justify-content: center; }
 
 /* Header */
-.site-header { position: absolute; inset: 0 0 auto; z-index: 50; padding-top: 12px; opacity: 1; transform: translateY(0); transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease, padding-top .25s ease; will-change: transform; }
-.site-header.is-scrolled { position: fixed; padding-top: 8px; }
+.site-header { position: fixed; inset: 0 0 auto; z-index: 50; padding-top: 12px; opacity: 1; transform: translateY(0); transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease, padding-top .25s ease; will-change: transform; }
+.site-header.is-scrolled { padding-top: 8px; }
 .site-header.is-hidden { opacity: 0; transform: translateY(calc(-100% - 24px)); pointer-events: none; }
 .nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 58px; padding: 4px 5px 4px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; background: rgba(10,10,10,.62); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .site-header.is-scrolled .nav { background: rgba(10,10,10,.9); }

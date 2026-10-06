@@ -94,7 +94,6 @@ if (floating) floating.innerHTML = whatsappIcon;
 
 const header = document.querySelector('.site-header');
 if (header) {
-  const topLimit = 140;
   const directionThreshold = 12;
   let lastScrollY = Math.max(window.scrollY, 0);
   let directionDistance = 0;
@@ -104,7 +103,7 @@ if (header) {
     const currentScrollY = Math.max(window.scrollY, 0);
     const delta = currentScrollY - lastScrollY;
 
-    if (currentScrollY <= topLimit) {
+    if (currentScrollY <= 1) {
       header.classList.remove('is-scrolled', 'is-hidden');
       directionDistance = 0;
     } else {
