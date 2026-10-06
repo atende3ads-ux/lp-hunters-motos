@@ -93,12 +93,50 @@ const floating = document.querySelector('.floating-whatsapp');
 if (floating) floating.innerHTML = whatsappIcon;
 
 const header = document.querySelector('.site-header');
-const hero = document.querySelector('.hero');
-if (header && hero && 'IntersectionObserver' in window) {
-  const headerObserver = new IntersectionObserver(([entry]) => {
-    header.classList.toggle('is-scrolled', !entry.isIntersecting);
-  }, {rootMargin: '-140px 0px 0px'});
-  headerObserver.observe(hero);
+if (header) {
+  const topLimit = 140;
+  const directionThreshold = 12;
+  let lastScrollY = Math.max(window.scrollY, 0);
+  let directionDistance = 0;
+  let scrollTicking = false;
+
+  const updateHeader = () => {
+    const currentScrollY = Math.max(window.scrollY, 0);
+    const delta = currentScrollY - lastScrollY;
+
+    if (currentScrollY <= topLimit) {
+      header.classList.remove('is-scrolled', 'is-hidden');
+      directionDistance = 0;
+    } else {
+      header.classList.add('is-scrolled');
+
+      if ((delta > 0 && directionDistance < 0) || (delta < 0 && directionDistance > 0)) {
+        directionDistance = 0;
+      }
+
+      directionDistance += delta;
+
+      if (directionDistance >= directionThreshold) {
+        header.classList.add('is-hidden');
+        directionDistance = 0;
+      } else if (directionDistance <= -directionThreshold) {
+        header.classList.remove('is-hidden');
+        directionDistance = 0;
+      }
+    }
+
+    lastScrollY = currentScrollY;
+    scrollTicking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(updateHeader);
+  }, {passive: true});
+
+  header.addEventListener('focusin', () => header.classList.remove('is-hidden'));
+  updateHeader();
 }
 
 /* Calculadora: Faça sua conta */
