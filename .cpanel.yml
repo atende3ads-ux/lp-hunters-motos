@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    # The repository is checked out directly in the domain's document root.
+    # Updating from the remote already publishes the tracked files, so the
+    # deployment step only needs a successful, side-effect-free task.
+    - /bin/true
