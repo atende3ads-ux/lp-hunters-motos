@@ -5,7 +5,7 @@ const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Hunters+Motos+%7C+
 
 document.documentElement.classList.add('has-js');
 
-const iconWhats = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L.2 24l6.3-1.6a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5ZM12.2 21.8h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.7Zm5.4-7.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.2-.7.2l-.9 1.1c-.2.3-.4.3-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.7.1-.2.1-.4 0-.6L8.1 4.8c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 3s1.3 3.5 1.5 3.7c.2.3 2.6 4 6.3 5.6 2.3 1 3.2 1.1 4.4.9.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/></svg>`;
+const whatsappIcon = `<img class="whatsapp-icon" src="assets/images/icon-whatsapp.svg" alt="" width="24" height="24" aria-hidden="true">`;
 
 /* Ícones em linha (traço), no mesmo padrão das LPs de referência */
 const icons = {
@@ -39,7 +39,7 @@ const icons = {
   headset: `<svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><path d="M6 18H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h1v6Zm12 0h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1v6ZM18 18c0 2-2 3-4 3h-2"/></svg>`,
   clock: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
   instagram: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>`,
-  whatsapp: `<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 1a5 5 0 0 1-2.9-2.9l1-1-1-2-1.6 1Z"/></svg>`
+  whatsapp: whatsappIcon
 };
 const icon = name => icons[name] || icons.check;
 
@@ -90,7 +90,7 @@ document.querySelectorAll('[data-whatsapp]').forEach(link => {
 document.querySelectorAll('[data-google-reviews]').forEach(link => { link.href = GOOGLE_REVIEWS_URL; });
 
 const floating = document.querySelector('.floating-whatsapp');
-if (floating) floating.innerHTML = iconWhats;
+if (floating) floating.innerHTML = whatsappIcon;
 
 const header = document.querySelector('.site-header');
 const hero = document.querySelector('.hero');
