@@ -12,7 +12,9 @@
 - Produtos apresentados: scooters elétricas, bikes elétricas e triciclo elétrico
 - Atendimento presencial e test drive: Barra da Tijuca, Rio de Janeiro
 - Endereço: Av. das Américas, 3939, Bloco 1, Loja E, Barra da Tijuca, Rio de Janeiro, RJ, CEP 22631-003
+- Horário: segunda a sexta, das 10h às 18h; sábado, das 10h às 16h; domingo, fechado
 - WhatsApp: +55 21 98386-8547
+- Instagram: https://www.instagram.com/huntersmotos/
 - A página permite comparar modelos, consultar características e solicitar atendimento pelo WhatsApp.
 
 ## Conteúdo principal
