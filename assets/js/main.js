@@ -1,6 +1,4 @@
-const WHATSAPP_NUMBER = "5521983868547";
-const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}`;
-const DEFAULT_MESSAGE = "Oi, Hunters! Estou procurando uma elétrica para a minha rotina e ainda não sei qual modelo escolher. Pode me ajudar?";
+const CONTACT_URL = "https://spar.3ads.com.br/l/atendimento-hunters-43r8";
 const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Hunters+Motos+%7C+Scooters+El%C3%A9tricas/@-23.0007255,-43.352311,17z/data=!4m8!3m7!1s0x9bdb300a2e25f7:0x329c6f6d2099edd9!8m2!3d-23.0007255!4d-43.352311!9m1!1b1!16s%2Fg%2F11p9ycds_r?hl=pt-BR";
 
 document.documentElement.classList.add('has-js');
@@ -79,10 +77,8 @@ document.querySelectorAll('[data-icon]').forEach(element => {
   element.innerHTML = icon(element.dataset.icon);
 });
 
-const whatsUrl = message => `${WHATSAPP}?text=${encodeURIComponent(message)}`;
-
 document.querySelectorAll('[data-whatsapp]').forEach(link => {
-  link.href = whatsUrl(link.dataset.message || DEFAULT_MESSAGE);
+  link.href = CONTACT_URL;
   link.target = '_blank';
   link.rel = 'noopener';
 });
@@ -151,8 +147,6 @@ document.querySelectorAll('[data-calc]').forEach(form => {
   const daily = form.querySelector('[name="daily"]');
   const days = form.querySelector('[name="days"]');
   const result = form.querySelector('[data-calc-result]');
-  const cta = form.querySelector('[data-calc-cta]');
-  const baseMessage = cta?.dataset.message || '';
   const empty = result.textContent;
 
   form.addEventListener('submit', event => event.preventDefault());
@@ -163,17 +157,15 @@ document.querySelectorAll('[data-calc]').forEach(form => {
     if (Number.isFinite(d) && Number.isFinite(n) && d > 0 && n > 0) {
       const total = d * Math.min(n, 31);
       result.textContent = brl.format(total);
-      if (cta) cta.href = whatsUrl(`${baseMessage} Hoje gasto cerca de ${brl.format(d)} por dia, ${n} dias por mês (${brl.format(total)} no mês).`);
     } else {
       result.textContent = empty;
-      if (cta) cta.href = whatsUrl(baseMessage);
     }
   };
   daily.addEventListener('input', update);
   days.addEventListener('input', update);
 });
 
-/* Formulário: abre uma conversa personalizada e registra a intenção sem enviar PII ao tracking. */
+/* Formulário: abre o canal rastreável e registra a intenção sem enviar PII ao tracking. */
 document.querySelectorAll('[data-lead-form]').forEach(form => {
   const formId = 'lead_whatsapp';
   const sendGoogleEvent = (eventName, eventData) => {
@@ -199,7 +191,6 @@ document.querySelectorAll('[data-lead-form]').forEach(form => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
-    const name = String(data.get('nome')).trim();
     const model = String(data.get('modelo')).trim();
     const trackingData = {
       form_id: formId,
@@ -210,8 +201,7 @@ document.querySelectorAll('[data-lead-form]').forEach(form => {
     sendGoogleEvent('lead_whatsapp_click', trackingData);
     sendGoogleEvent('generate_lead', trackingData);
 
-    const message = `Oi, Hunters! Meu nome é ${name} e tenho interesse no modelo ${model}. Quero receber mais informações.`;
-    window.open(whatsUrl(message), '_blank', 'noopener');
+    window.open(CONTACT_URL, '_blank', 'noopener');
   });
 });
 

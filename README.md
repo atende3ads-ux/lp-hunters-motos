@@ -33,8 +33,10 @@ Rastreamento ativo: GTM `GTM-PKMM67CF`, GA4 `G-K88YCW36CL`, Google Ads
 `AW-16513189480` e Microsoft Clarity `ytlwefl3i7`. O webhook só deve ser ativado
 depois de confirmar a origem HTTPS exata e o contrato CORS.
 
-O formulário registra `lead_form_field_completed` para cada campo preenchido e,
-ao abrir o WhatsApp, dispara `lead_whatsapp_click` e `generate_lead`. Os eventos
+Todos os CTAs de contato usam o redirecionador rastreável
+`https://spar.3ads.com.br/l/atendimento-hunters-43r8`. O formulário registra
+`lead_form_field_completed` para cada campo preenchido e, ao abrir o canal de
+atendimento, dispara `lead_whatsapp_click` e `generate_lead`. Os eventos
 incluem somente o identificador do formulário, o campo, o canal e, quando
 aplicável, o modelo de interesse; nome e telefone não são enviados ao tracking.
 
