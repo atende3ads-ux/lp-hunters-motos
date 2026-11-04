@@ -1,4 +1,4 @@
-:root { --black-friday-banner-height: 56px; }
+:root { --black-friday-banner-height: 64px; }
 
 body { padding-top: var(--black-friday-banner-height); }
 
@@ -10,7 +10,7 @@ body { padding-top: var(--black-friday-banner-height); }
   align-items: center;
   justify-content: center;
   height: var(--black-friday-banner-height);
-  padding: 4px 12px;
+  padding: 8px 12px;
   background: #000;
   color: #fff;
   box-shadow: 0 2px 12px rgb(0 0 0 / 18%);
@@ -38,5 +38,5 @@ section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner
 .black-friday-card .btn { margin-top: 1.2rem; }
 
 @media (min-width: 621px) {
-  :root { --black-friday-banner-height: 64px; }
+  :root { --black-friday-banner-height: 72px; }
 }
