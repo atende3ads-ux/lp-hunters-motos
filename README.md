@@ -15,6 +15,20 @@ O cPanel usa `.cpanel.yml` para publicar os arquivos públicos em
 `/home2/hg3ads37/produto.huntersmotos.com.br/`. O `.htaccess` concentra HTTPS,
 CSP, cabeçalhos de segurança, compressão e cache.
 
+## Página Black Friday 2026
+
+`black-friday/index.html` é a cópia da LP principal para
+`https://produto.huntersmotos.com.br/black-friday/`. Ela usa os ativos comuns em
+`assets/` e carrega CSS e JavaScript próprios para a faixa e os cards da campanha.
+O `index.html` da raiz permanece independente. A receita `.cpanel.yml` publica
+as duas páginas e o diretório de ativos; a nova URL só fica disponível após o
+deploy no cPanel.
+
+O selo veio do arquivo fornecido por Thiago. As fotos da Tank e do Vezz vieram
+dos links de Google Drive fornecidos para esta campanha e foram convertidas
+para WebP. Os preços e condições da Black Friday foram informados por Thiago
+em 2026-11-04 e valem somente em novembro de 2026.
+
 Ao editar os blocos inline JSON-LD, Microsoft Clarity ou Google Tracking de
 `index.html`, atualize os hashes CSP antes do commit:
 

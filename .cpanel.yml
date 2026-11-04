@@ -5,3 +5,5 @@ deployment:
     - /bin/mkdir -p "$DEPLOYPATH"
     - /bin/cp -f index.html robots.txt sitemap.xml llm.txt llms.txt googlea7325cf7451ffaf9.html .htaccess "$DEPLOYPATH"
     - /bin/cp -R assets "$DEPLOYPATH"
+    - /bin/mkdir -p "$DEPLOYPATH/black-friday"
+    - /bin/cp -f black-friday/index.html "$DEPLOYPATH/black-friday/index.html"
