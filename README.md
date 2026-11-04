@@ -11,9 +11,10 @@ python3 -m http.server 4180
 
 ## Publicação
 
-O cPanel usa `.cpanel.yml` para publicar os arquivos públicos em
-`/home2/hg3ads37/produto.huntersmotos.com.br/`. O `.htaccess` concentra HTTPS,
-CSP, cabeçalhos de segurança, compressão e cache.
+O cPanel usa `.cpanel.yml` para publicar a página Black Friday e seus ativos em
+`/home2/hg3ads37/produto.huntersmotos.com.br/`, além de atualizar o sitemap e a
+CSP. A receita preserva o `index.html` e os ativos compartilhados da LP principal.
+O `.htaccess` concentra HTTPS, CSP, cabeçalhos de segurança, compressão e cache.
 
 ## Página Black Friday 2026
 
@@ -22,8 +23,8 @@ CSP, cabeçalhos de segurança, compressão e cache.
 `assets/`, CSS próprio para a faixa e os cards, e uma cópia do JavaScript minificado
 com o caminho relativo do ícone ajustado para a subpasta.
 O `index.html` da raiz permanece independente. A receita `.cpanel.yml` publica
-as duas páginas e o diretório de ativos; a nova URL só fica disponível após o
-deploy no cPanel.
+somente a página da campanha e seus ativos próprios; a nova URL só fica disponível
+após o deploy no cPanel.
 
 O selo veio do arquivo fornecido por Thiago. As fotos da Tank e do Vezz vieram
 dos links de Google Drive fornecidos para esta campanha e foram convertidas

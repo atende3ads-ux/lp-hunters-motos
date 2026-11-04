@@ -2,8 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/hg3ads37/produto.huntersmotos.com.br/
-    - /bin/mkdir -p "$DEPLOYPATH"
-    - /bin/cp -f index.html robots.txt sitemap.xml llm.txt llms.txt googlea7325cf7451ffaf9.html .htaccess "$DEPLOYPATH"
-    - /bin/cp -R assets "$DEPLOYPATH"
-    - /bin/mkdir -p "$DEPLOYPATH/black-friday"
+    - /bin/mkdir -p "$DEPLOYPATH/black-friday" "$DEPLOYPATH/assets/css" "$DEPLOYPATH/assets/js" "$DEPLOYPATH/assets/images/products"
+    - /bin/cp -f .htaccess sitemap.xml "$DEPLOYPATH"
     - /bin/cp -f black-friday/index.html "$DEPLOYPATH/black-friday/index.html"
+    - /bin/cp -f assets/css/black-friday.css "$DEPLOYPATH/assets/css/black-friday.css"
+    - /bin/cp -f assets/js/main-black-friday.min.js "$DEPLOYPATH/assets/js/main-black-friday.min.js"
+    - /bin/cp -f assets/images/black-friday-hunters.png "$DEPLOYPATH/assets/images/black-friday-hunters.png"
+    - /bin/cp -f assets/images/products/tank-g11-side-black-friday.webp assets/images/products/vezz-black-friday.webp "$DEPLOYPATH/assets/images/products/"
