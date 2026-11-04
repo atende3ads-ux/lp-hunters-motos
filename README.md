@@ -19,7 +19,8 @@ CSP, cabeçalhos de segurança, compressão e cache.
 
 `black-friday/index.html` é a cópia da LP principal para
 `https://produto.huntersmotos.com.br/black-friday/`. Ela usa os ativos comuns em
-`assets/` e carrega CSS e JavaScript próprios para a faixa e os cards da campanha.
+`assets/`, CSS próprio para a faixa e os cards, e uma cópia do JavaScript minificado
+com o caminho relativo do ícone ajustado para a subpasta.
 O `index.html` da raiz permanece independente. A receita `.cpanel.yml` publica
 as duas páginas e o diretório de ativos; a nova URL só fica disponível após o
 deploy no cPanel.
