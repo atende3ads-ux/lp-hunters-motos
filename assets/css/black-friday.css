@@ -25,8 +25,17 @@ section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner
 .black-friday-offers { background: #111; color: #fff; }
 .black-friday-offers .section-intro p:not(.eyebrow) { color: #d6d6d6; }
 .black-friday-offers .model-row { align-items: stretch; }
-.black-friday-card .product-media { aspect-ratio: 4 / 3; }
-.black-friday-card .product-media img { object-position: center 55%; }
+.black-friday-card .product-media { aspect-ratio: 1; }
+.black-friday-card--tank .product-media img { object-position: center 10%; }
+.black-friday-card--vezz .product-media img { object-position: center bottom; }
+.black-friday-card--x13 .product-media::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  background: url("../images/products/x13-optimized.webp") center / cover;
+  filter: blur(14px) brightness(.65);
+}
+.black-friday-card--x13 .product-media img { position: relative; object-fit: contain; }
 .black-friday-card .product-title { margin-bottom: 1rem; }
 .offer-price { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; margin-bottom: 1rem; line-height: 1.2; }
 .offer-price del { color: #61636a; font-size: .95rem; }
