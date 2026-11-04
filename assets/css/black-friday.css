@@ -1,4 +1,4 @@
-:root { --black-friday-banner-height: 68px; }
+:root { --black-friday-banner-height: 56px; }
 
 body { padding-top: var(--black-friday-banner-height); }
 
@@ -9,15 +9,14 @@ body { padding-top: var(--black-friday-banner-height); }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(8px, 2vw, 24px);
   height: var(--black-friday-banner-height);
-  padding: 8px 12px;
+  padding: 4px 12px;
   background: #000;
   color: #fff;
   box-shadow: 0 2px 12px rgb(0 0 0 / 18%);
 }
 
-.black-friday-banner img { width: clamp(220px, 55vw, 420px); height: auto; }
+.black-friday-banner img { width: clamp(210px, 50vw, 350px); height: auto; }
 
 .site-header { top: var(--black-friday-banner-height); }
 .skip-link:focus { top: calc(var(--black-friday-banner-height) + 8px); }
@@ -39,5 +38,5 @@ section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner
 .black-friday-card .btn { margin-top: 1.2rem; }
 
 @media (min-width: 621px) {
-  :root { --black-friday-banner-height: 76px; }
+  :root { --black-friday-banner-height: 64px; }
 }
