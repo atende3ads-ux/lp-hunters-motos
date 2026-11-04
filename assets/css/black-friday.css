@@ -22,7 +22,6 @@ body { padding-top: var(--black-friday-banner-height); }
 .skip-link:focus { top: calc(var(--black-friday-banner-height) + 8px); }
 section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner-height) + 90px); }
 
-.triciclo-list { display: grid; gap: 1.25rem; }
 .product-card--promo .product-title-row { margin-bottom: .3rem; }
 .product-card--tank .product-media img { object-position: center 68%; }
 .product-card--vezz .product-media { aspect-ratio: 1; }
@@ -59,8 +58,7 @@ section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner
 }
 
 @media (min-width: 901px) {
-  .model-row--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .product-card--vezz.is-wide .product-media { aspect-ratio: auto; min-height: 440px; height: 520px; }
+  .model-row--black-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 621px) {
