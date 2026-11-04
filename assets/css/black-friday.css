@@ -23,8 +23,8 @@ body { padding-top: var(--black-friday-banner-height); }
 section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner-height) + 90px); }
 
 .product-card--promo .product-title-row { margin-bottom: .3rem; }
+.model-row--black-three .product-media { aspect-ratio: 16 / 11; }
 .product-card--tank .product-media img { object-position: center 68%; }
-.product-card--vezz .product-media { aspect-ratio: 1; }
 .product-card--vezz .product-media::before {
   content: "";
   position: absolute;
@@ -32,7 +32,8 @@ section[id], .group-head[id] { scroll-margin-top: calc(var(--black-friday-banner
   background: url("../images/products/vezz-black-friday.webp") center / cover;
   filter: blur(14px) brightness(.65);
 }
-.product-card--vezz .product-media img { position: relative; object-fit: contain; }
+.product-card--vezz .product-media img { position: relative; object-fit: contain; transform: scale(1.32); transform-origin: center bottom; }
+.product-card--vezz:hover .product-media img { transform: scale(1.35); }
 .offer-price { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; margin-bottom: 1rem; line-height: 1.2; }
 .offer-price del { color: #61636a; font-size: .95rem; }
 .offer-price strong { color: #111; font-size: clamp(1.55rem, 2.5vw, 2rem); font-weight: 900; letter-spacing: -.04em; }
